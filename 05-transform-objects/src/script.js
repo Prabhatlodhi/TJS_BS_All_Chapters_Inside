@@ -33,7 +33,7 @@ const cube3 = new THREE.Mesh(
     new THREE.MeshBasicMaterial({color: "red"})
     )
 group.add(cube3)
-cube3.position.x = -1.2
+cube3.position.x = 2
 
 
 // const geometry = new THREE.BoxGeometry(1, 1, 1)
