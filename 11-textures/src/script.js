@@ -1,6 +1,43 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
+//Texture
+const image = new Image()
+// const texture = new THREE.Texture(image)
+
+// image.onload = ()=>{
+// //   const texture = new THREE.Texture(image)
+//     texture.needsUpdate = true
+// }
+
+// image.src = '/textures/door/color.jpg'
+
+//2nd way
+const loadingManager = new THREE.LoadingManager()
+loadingManager.onStart = ()=>{
+
+}
+const textureLoader = new THREE.TextureLoader()
+const colorTexture = textureLoader.load('/textures/minecraft.png')
+const alphaTexture = textureLoader.load('/textures/door/alpha.jpg')
+const heightTexture = textureLoader.load('/textures/door/height.jpg')
+const normalTexture = textureLoader.load('/textures/door/normal.jpg')
+const ambientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
+const metalnessTexture = textureLoader.load('/textures/door/metalness.jpg')
+const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg')
+
+// colorTexture.repeat.x = 2
+// colorTexture.repeat.y = 3
+// colorTexture.wrapS = THREE.RepeatWrapping
+// colorTexture.wrapT = THREE.RepeatWrapping
+// colorTexture.offset.x = 0.5
+
+//blur
+// colorTexture.minFilter = THREE.NearestFilter
+//clear
+colorTexture.magFilter = THREE.NearestFilter
+// colorTexture.magFilter = THREE.NearestFilter
+
 /**
  * Base
  */
@@ -14,7 +51,8 @@ const scene = new THREE.Scene()
  * Object
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+// const geometry = new THREE.SphereGeometry(1, 32, 32)
+const material = new THREE.MeshBasicMaterial({ map: colorTexture })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
